@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <title>Vue .js Platzi</title>
+</head>
+<body>
+        <article id="app">
+                <h2>Hello{{ nombre }}</h2>
+                <!--v-bind (:) para agregar enlaces-->
+                <a v-bind:href ="url" target= "_blank" >Ir a pagina de {{ link }}</a> 
+                <br>
+                <!--v-if (para mostrar o no el enlace)-->
+                <a v-if = "mostrar" :href = "url2" target="_blank">Ingresar a {{ link2 }} </a>                
+        </article>
+
+        <article id="show">
+                <!--CONDICIONES-->
+                <div v-if ="luz">
+                    <h1>Bienvenido {{ nuevo }}</h1>
+                        <p>`I shall be punished for it flashed across her mind that she remained the same size: to be ashamed of yourself,' said Alice, `a great girl like you,' (she might well say this), `to go on crying in this way! I shall think nothing of tumbling down stairs! "William the Conqueror, whose cause was favoured by the pope, was soon submitted to by the little door, so she went back to the garden door. `Found IT,' the Mouse in the world she was to get out of that dark hall, and wander about among those beds of bright flowers and those cool fountains, but she could not possibly reach it: she could not possibly reach it: she could not possibly reach it: she could not even get her head though the doorway; `and even if my head would go through,' thought poor Alice, `it would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her. Suddenly she came upon a little way off, and she crossed her hands on her lap as if it thought that SOMEBODY ought to speak, and no one else seemed inclined to say anything.
+                        </p>
+                </div>                                                                
+                <div v-show = "look">
+                        <h1>Bienvenido {{ nuevo }}</h1>
+                        <p>`I shall be punished for it flashed across her mind that she remained the same size: to be ashamed of yourself,' said Alice, `a great girl like you,' (she might well say this), `to go on crying in this way! I shall think nothing of tumbling down stairs! "William the Conqueror, whose cause was favoured by the pope, was soon submitted to by the little door, so she went back to the garden door. `Found IT,' the Mouse in the world she was to get out of that dark hall, and wander about among those beds of bright flowers and those cool fountains, but she could not possibly reach it: she could not possibly reach it: she could not possibly reach it: she could not even get her head though the doorway; `and even if my head would go through,' thought poor Alice, `it would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her. Suddenly she came upon a little way off, and she crossed her hands on her lap as if it thought that SOMEBODY ought to speak, and no one else seemed inclined to say anything.
+                </div>
+                <div v-show = "!look">
+                        <h1>Bienvenido {{ alumno }}</h1>
+                        <p>`I shall be punished for it flashed across her mind that she remained the same size: to be ashamed of yourself,' said Alice, `a great girl like you,' (she might well say this), `to go on crying in this way! I shall think nothing of tumbling down stairs! "William the Conqueror, whose cause was favoured by the pope, was soon submitted to by the little door, so she went back to the garden door. `Found IT,' the Mouse in the world she was to get out of that dark hall, and wander about among those beds of bright flowers and those cool fountains, but she could not possibly reach it: she could not possibly reach it: she could not possibly reach it: she could not even get her head though the doorway; `and even if my head would go through,' thought poor Alice, `it would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her. Suddenly she came upon a little way off, and she crossed her hands on her lap as if it thought that SOMEBODY ought to speak, and no one else seemed inclined to say anything.
+                </div>
+        </article>
+        
+        <section id="letras">
+            <!--FILTROS-->
+            <h1>{{ titulo | uppercase }}</h1>
+            <h1>{{ titulo2 | lowecase }}</h1>
+        </section>
+
+        <section id="filters">
+                <div>
+                        <center>
+                            <br>               
+                            <!--EVENTOS-->       
+                            <button @click="contador++">{{aumentar | upc}}</button>
+                            <button v-on:click="restar">{{reducir | upc}}</button>
+                            <h3>El contador esta en {{ contador }}</h3>
+                        </center>
+                    </div>
+        </section>
+
+<section id="formulario">
+    <form v-on:submit.prevent="submit" method="post">
+        <h2>Seleccione el curso</h2>
+        <template v-for="course in courses">
+            <input type="checkbox" v-model="" v-bind:id="" v-bind:Value="">
+            <label v-bind:for=""></label>        
+        </template>
+        <button type="submit">ENVIAR</button>
+    </form>
+</section>
+    <!-- 
+            <form v-on:submit.prevent="submit" action="get">
+                <h1>¿Cuáles son tus cursos favoritos?</h1>
+                <input v-model="cursos" type="checkbox" name="" id="html5" value = "hmlt5">
+                <label for="html5">Curso de HTML5</label>
+                <input  v-model="cursos"type="checkbox" name="" id="css3" value="css3">
+                <label for="css3">Curso de Css3</label>
+                <input  v-model="cursos"type="checkbox" name="" id="vue" value="vue">
+                <label for="vue"></label>Curso de Vue.js
+                <input v-model="cursos" type="checkbox" name="" id="react" value="react">  
+                <label for="react"></label>Curso de React.js
+                <button type="submit">Enviar</button>
+            </form> -->
+            <br>
+            <br>
+            <br>
+            <br>
+        </section>
+
+        <section id="form">
+            <form v-on:submit.prevent="subPre" method="post">
+                <h2>Seleccionar curso</h2>
+                <template v-for="curso in cursos">
+                        <input type="checkbox" v-model="cursosSeleccionados" v-bind:id="curso.value" v-bind:value="curso.value">
+                        <label v-bind:for="curso.value">{{cursos.nombre}}</label>
+                </template>
+                <button type="submit">ENVIAR</button>
+
+            </form>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        let app = new Vue({
+            el : '#app', //elemento donde se hara reactivo
+
+            data : {      //dato que asignamos para el elemento reactivo
+                nombre : 'Ricardo',
+                url : 'https://www.facebook.com',
+                url2: 'https://www.google.com',
+                link: 'Facebook',
+                link2: 'Google',                
+                mostrar : true, 
+            },
+        });
+
+        let show = new Vue({
+            el: '#show',
+            
+            data : {
+                nuevo :'cachimbo-2019',
+                alumno : 'estudiante' ,
+                luz : false,       
+                look : true         
+            }
+        });
+
+        let letras = new Vue ({
+            el :'#letras',
+
+            data :{
+                titulo : 'MAYUSCULAS',
+                titulo2 : 'minúsculas'
+            },
+
+            filters : {
+                uppercase : function (str){
+                    return str.toUpperCase() 
+                    },
+                lowercase : function(str){
+                    return str.toLowerCase()
+                }
+            }
+        });
+
+        let filers = new Vue({
+            el: '#filters',
+            data : {
+                contador : 0 ,
+                aumentar : 'aumentar',
+                reducir : 'reducir'
+            },
+
+            filters: {
+                upc : function(str){
+                    return str.toUpperCase()
+                }
+            },
+
+            methods: {
+                sumar :  function () {
+                    this.contador++
+                },
+                restar : function (){
+                    this.contador--
+                } 
+            }
+        });
+
+        let formularios = new Vue({
+            el : '#formularios',
+
+            data : {
+                nombre : '',
+                cursos : []
+            },
+
+            filters : {
+                upper : function (str){
+                    return str.toUpperCase()  
+                }               
+            },
+            methods : {
+                submit : function(){
+                    console.log('enviado'),
+                    console.log(this.cursos)
+                }
+            }
+
+        });
+
+        let form = new Vue({
+        el: '#formulario',
+        data:{
+            cursos: [
+            {nombre:'Curso de HTML5', value:'HTML5'},
+            {nombre : 'Curso de CSS3', value:'CSS3'},
+            {nombre: 'Curso de JavaScript', value:'JavaScript'},
+            {nombre: 'Curso de vue.js', value:'Vue.js'}
+            ],
+            cursosSeleccionados: []               
+        },
+        
+        methods :{
+            subPre : function(){
+                console.log('TODO CORRECTO'),
+                console.log(this.cursosSeleccionados)
+            }
+        }
+        });
+    </script>    
+</body>
+</html>
